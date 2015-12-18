@@ -15,6 +15,7 @@ class SNTextures {
     static var alienTexture2:SKTexture = SKTexture(imageNamed: "Alien2")
     static var laserTexture:SKTexture  = SKTexture(imageNamed: "Laser")
     static var bulletTexture:SKTexture = SKTexture(imageNamed: "Bullet")
+    static var forceFieldTexture:SKTexture = SKTexture(imageNamed: "ForceField")
     
     static var texturesLoaded:Bool = false
     
@@ -23,7 +24,8 @@ class SNTextures {
             alienTexture1,
             alienTexture2,
             laserTexture,
-            bulletTexture
+            bulletTexture,
+            forceFieldTexture
         ]) { () -> Void in
             texturesLoaded = true
             completion();

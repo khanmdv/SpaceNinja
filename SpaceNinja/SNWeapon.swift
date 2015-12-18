@@ -9,9 +9,15 @@
 import Foundation
 import SpriteKit
 
+enum SNWeaponType:Int { case BattleGun = 1, LaserGun }
+
 protocol SNWeapon {
     
+    func getWeaponType() -> SNWeaponType
+    
     func getWeaponName() -> String
+    
+    func getRemainingRounds() -> Int
     
     func fire(scene:SNGameScene, from:CGPoint, to:CGPoint)
 }

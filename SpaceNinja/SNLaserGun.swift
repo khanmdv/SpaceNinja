@@ -11,11 +11,19 @@ import SpriteKit
 
 class SNLaserGun : SNWeapon {
     
-    let MAX_SHOTS = INT32_MAX
+    let MAX_SHOTS = 50
     var shotsFired = 0
     
     func getWeaponName() -> String {
         return "Laser Gun"
+    }
+    
+    func getWeaponType() -> SNWeaponType {
+        return SNWeaponType.LaserGun
+    }
+    
+    func getRemainingRounds() -> Int {
+        return MAX_SHOTS - shotsFired
     }
     
     func fire(scene:SNGameScene, from:CGPoint, to:CGPoint) {

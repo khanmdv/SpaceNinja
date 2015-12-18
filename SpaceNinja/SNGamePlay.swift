@@ -11,19 +11,28 @@ import SpriteKit
 
 class SNGamePlay {
     
+    let MAX_ALIEN_SPEED:CGFloat = 2.0
+    let MIN_ALIEN_SPEED:CGFloat = 8.0
+    
+    
     var weapons = Array<SNWeapon>()
     var totalKills:Int = 0
     var totalMisses:Int = 0
     var lives:Int = SNConstants.MAX_LIVES
     var currentWeapon:SNWeapon? = nil
-    
-    var alienSpeed:CGFloat = 8.0
+    var gameStartTime = NSDate()
     
     func getAlienSpeed() -> NSTimeInterval{
-        if (totalKills == 0 || totalMisses == 0) {
-            return NSTimeInterval(alienSpeed)
+        let timeSinceGameStarted = NSDate().timeIntervalSinceDate(gameStartTime) * 0.005
+        let speed = (MIN_ALIEN_SPEED - (CGFloat(timeSinceGameStarted) + (CGFloat(totalKills) * 0.1) - (CGFloat(totalMisses == 0 ? 1.0 : totalMisses) * 0.02)))
+        print("Speed is \(speed)")
+        
+        if (speed < MAX_ALIEN_SPEED){
+            return NSTimeInterval(MAX_ALIEN_SPEED)
+        } else if (speed > MIN_ALIEN_SPEED){
+            return NSTimeInterval(MIN_ALIEN_SPEED)
         } else {
-            return NSTimeInterval((CGFloat)(totalMisses/totalKills) * alienSpeed)
+            return NSTimeInterval(speed)
         }
     }
     
@@ -32,6 +41,7 @@ class SNGamePlay {
     }
     
     func alienMissed(){
+        print("Missed \(totalMisses)")
         totalMisses++
     }
     
@@ -78,6 +88,24 @@ class SNGamePlay {
         self.addDefaultWeapon()
         
         return sprite
+    }
+    
+    func createWeaponNode(type:SNWeaponType, frame:CGRect) -> SKNode {
+        let weaponNode = SKLabelNode(text:"L")
+        weaponNode.position = CGPoint(x:random(min: 30, max: frame.size.width-30), y:frame.size.height)
+        weaponNode.zPosition = 4
+        weaponNode.fontSize = 60
+        weaponNode.fontName = "chalkduster"
+        weaponNode.fontColor = UIColor.greenColor()
+        
+        weaponNode.physicsBody = SKPhysicsBody(rectangleOfSize: CGSize(width:30.0, height:60.0)) // 1
+        weaponNode.physicsBody?.dynamic = true // 2
+        weaponNode.physicsBody?.affectedByGravity = false
+        weaponNode.physicsBody?.categoryBitMask = type == SNWeaponType.BattleGun ? PhysicsCategory.BattleGun : PhysicsCategory.LaserGun // 3
+        weaponNode.physicsBody?.contactTestBitMask = PhysicsCategory.Spaceship // 4
+        weaponNode.physicsBody?.collisionBitMask = PhysicsCategory.None // 5
+        
+        return weaponNode
     }
     
     func addDefaultWeapon(){

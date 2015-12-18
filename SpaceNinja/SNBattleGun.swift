@@ -11,14 +11,27 @@ import SpriteKit
 
 class SNBattleGun : SNWeapon {
 
-    let MAX_SHOTS = INT32_MAX
+    let MAX_SHOTS = 100
     var shotsFired = 0
     
     func getWeaponName() -> String {
         return "Battle Gun"
     }
     
+    func getWeaponType() -> SNWeaponType {
+        return SNWeaponType.BattleGun
+    }
+    
+    func getRemainingRounds() -> Int {
+        return MAX_SHOTS - shotsFired
+    }
+    
     func fire(scene:SNGameScene, from:CGPoint, to:CGPoint) {
+        
+        if (shotsFired == MAX_SHOTS) {
+            return
+        }
+        
         let touchLocation = to
         
         let bullet = SKSpriteNode(imageNamed: "Bullet")

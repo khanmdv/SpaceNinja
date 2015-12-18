@@ -16,11 +16,27 @@ class SNAlienNode: SKSpriteNode {
         
         if (SNTextures.texturesLoaded){
             self.addAlienNode(frame)
+            
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("pause"), name: "GAME_PAUSED", object: nil)
+            NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("play"), name: "GAME_RESUME", object: nil)
+            
         }
+    }
+    
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder:aDecoder)
+    }
+    
+    internal func pause(){
+        self.paused = true
+    }
+    
+    internal func play(){
+        self.paused = false
     }
     
     internal func addAlienNode(frame:CGRect){

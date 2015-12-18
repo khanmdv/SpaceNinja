@@ -16,4 +16,6 @@ class SNConstants {
     static let NEW_GAME_BUTTON_TITLE    = "New Game"
     static let SCORES_BUTTON_TITLE      = "Scores"
     static let MAX_LIVES                = 3
+    static let WEAPON_NAME_TEXT         = "Weapon: "
+    static let WEAPON_REMAINING_ROUNDS  = "Rounds: "
 }

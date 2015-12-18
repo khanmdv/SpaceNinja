@@ -68,6 +68,7 @@
 		E7F7184F1BFD6B7600760E23 /* SNAlienNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F7184E1BFD6B7600760E23 /* SNAlienNode.swift */; };
 		E7F718501BFD6B7600760E23 /* SNAlienNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F7184E1BFD6B7600760E23 /* SNAlienNode.swift */; };
 		E7F718511BFD6B7600760E23 /* SNAlienNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F7184E1BFD6B7600760E23 /* SNAlienNode.swift */; };
+		E7FA24AE1C1174E2008E58E3 /* Fire.sks in Resources */ = {isa = PBXBuildFile; fileRef = E7FA24AD1C1174E2008E58E3 /* Fire.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +124,7 @@
 		E7F718441BFD33BB00760E23 /* bullet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = bullet.mp3; sourceTree = "<group>"; };
 		E7F718481BFD34E100760E23 /* intro.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = intro.mp3; sourceTree = "<group>"; };
 		E7F7184E1BFD6B7600760E23 /* SNAlienNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SNAlienNode.swift; sourceTree = "<group>"; };
+		E7FA24AD1C1174E2008E58E3 /* Fire.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Fire.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -231,6 +233,7 @@
 				E7F718371BFD339300760E23 /* Sounds */,
 				E7F7182F1BFC5D7500760E23 /* Fonts */,
 				E7F718141BFBEAAC00760E23 /* Images */,
+				E7FA24AD1C1174E2008E58E3 /* Fire.sks */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -418,6 +421,7 @@
 				E7F718391BFD33A400760E23 /* laser.mp3 in Resources */,
 				E7F718121BFBEA6A00760E23 /* ACKNOWLEDGEMENT in Resources */,
 				E7F718451BFD33BB00760E23 /* bullet.mp3 in Resources */,
+				E7FA24AE1C1174E2008E58E3 /* Fire.sks in Resources */,
 				E73AC41A1C01A4D500EDED55 /* gun.mp3 in Resources */,
 				E7F717EE1BFBDF0F00760E23 /* LaunchScreen.storyboard in Resources */,
 				E7F718411BFD33B300760E23 /* collide.mp3 in Resources */,

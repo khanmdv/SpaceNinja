@@ -16,6 +16,8 @@ struct PhysicsCategory {
     static let Alien     : UInt32 = 0b10      // 2
     static let Bullet    : UInt32 = 0b100 // 4
     static let Laser     : UInt32 = 0b1000 // 8
+    static let BattleGun : UInt32 = 0b10000 // 16
+    static let LaserGun  : UInt32 = 0b100000 // 32
 }
 
 func + (left: CGPoint, right: CGPoint) -> CGPoint {
