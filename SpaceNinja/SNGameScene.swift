@@ -20,6 +20,7 @@ class SNGameScene : SKScene, SKPhysicsContactDelegate {
     var spaceshipShieldVisible:Bool = false
     var spaceship:SKNode? = nil
     var touchOnSpaceship:Bool = false
+    var timeToAddNewWeapon:NSTimeInterval = 0.0
     
     /**
      *
@@ -36,6 +37,7 @@ class SNGameScene : SKScene, SKPhysicsContactDelegate {
         addSpaceShip(view)
         addWeaponLabels(view)
         gamePlay.addDefaultWeapon()
+        timeToAddNewWeapon = NSTimeInterval(random(min: 5.0, max: 15.0))
         
         runAction(SKAction.repeatActionForever(SKAction.sequence([
             SKAction.runBlock(addAlien),
@@ -141,7 +143,8 @@ class SNGameScene : SKScene, SKPhysicsContactDelegate {
             return
         }
         
-        if (gamePlay.getCurrentWeapon().getRemainingRounds() > 20){
+        if (timeToAddNewWeapon > 0 || gamePlay.getCurrentWeapon().getRemainingRounds() > 20){
+            timeToAddNewWeapon--
             return;
         }
         
@@ -152,6 +155,8 @@ class SNGameScene : SKScene, SKPhysicsContactDelegate {
             SKAction.moveToY(-y, duration: 15),
             SKAction.removeFromParent()
             ]));
+        
+        timeToAddNewWeapon = NSTimeInterval(random(min: 5.0, max: 15.0))
     }
     
     
@@ -294,11 +299,22 @@ class SNGameScene : SKScene, SKPhysicsContactDelegate {
             (firstBody.categoryBitMask & PhysicsCategory.Spaceship != 0)) {
                 
                 gamePlay.weaponChanged(SNBattleGun())
+                
+                if let weapon:SNWeapon = gamePlay.getCurrentWeapon() {
+                    
+                    currentWeaponLabel.text = weapon.getWeaponName()
+                    weaponRoundsRemainingLabel.text = String(weapon.getRemainingRounds())
+                }
         
         } else if ((secondBody.categoryBitMask & PhysicsCategory.LaserGun != 0) &&
             (firstBody.categoryBitMask & PhysicsCategory.Spaceship != 0)) {
                 
                 gamePlay.weaponChanged(SNLaserGun())
+                if let weapon:SNWeapon = gamePlay.getCurrentWeapon() {
+                    
+                    currentWeaponLabel.text = weapon.getWeaponName()
+                    weaponRoundsRemainingLabel.text = String(weapon.getRemainingRounds())
+                }
                 
         } else {
             print("Nothing happened")
